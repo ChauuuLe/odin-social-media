@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>troll</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body class="bg-gray-100 text-gray-900">
+
+    <footer class="text-gray-600">
+      <% unless current_page?(root_path) %>
+        <%= link_to 'Back to home page', root_path, class: "text-white underline hover:text-gray-300" %>
+      <% end %>
+    </footer>
+
+    <main class="p-6">
+      <%= yield %>
+    </main>
+
+    
+
+  </body>
+</html>

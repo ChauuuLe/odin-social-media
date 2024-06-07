@@ -1,0 +1,9 @@
+<div class="request-item">
+  <p class="request-username">
+    <%= User.find(friend_request.friend_id).username %>
+  </p>
+  <div class="request-actions">
+    <%= button_to "Cancel Request", user_friend_request_path(current_user, friend_request), method: :delete, class: "cancel-button" %>
+    <%= button_to "Accept Request", "/users/#{current_user.id}/friends", method: :post, params: { friend_id: friend_request.friend_id }, class: "accept-button" %>
+  </div>
+</div>

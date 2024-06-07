@@ -1,0 +1,10 @@
+<div class="container">
+  <h1 class="title">Your Requests</h1>
+  <ul class="list">
+    <% if @friend_requests.any? %>
+      <%= render @friend_requests %>
+    <% else %>
+      <p class="message">No one wants to be your friend</p>
+    <% end %>
+  </ul>
+</div>

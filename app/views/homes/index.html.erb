@@ -1,0 +1,23 @@
+<div class="container">
+  <h1 class="header-title">Welcome</h1>
+  <% if user_signed_in? %>
+    <h2 class="header-title">
+      <%= link_to "#{current_user.username}", user_path(current_user), class: "user-link" %>
+    </h2>
+    <div class="links-group">
+      <%= link_to 'Edit register information', edit_user_registration_path, class: "user-link" %> |
+      <%= link_to "Community", users_path, class: "user-link" %> |
+      <%= link_to "Your friends", user_friends_path(current_user), class: "user-link" %> |
+      <%= link_to 'Your Requests', user_friend_requests_path(current_user), class: "user-link" %> |
+      <%= link_to 'Newsfeed', posts_path, class: "user-link" %>
+    </div>
+    <%= form_with url: destroy_user_session_path, method: :delete, local: true, class: "mt-4" do %>
+      <%= submit_tag 'Log out', class: "danger-button" %>
+    <% end %>
+  <% else %>
+    <div class="links-group">
+      <%= link_to 'Sign up', new_user_registration_path, class: "user-link" %> |
+      <%= link_to 'Log in', new_user_session_path, class: "user-link" %>
+    </div>
+  <% end %>
+</div>

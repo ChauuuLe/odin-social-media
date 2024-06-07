@@ -1,0 +1,9 @@
+<div class="container">
+  <h1 class="title">My Friends</h1>
+  <ul class="list">
+    <% @friends.each do |friendship| %>
+      <%= render partial: 'friend', locals: { friend: friendship.friend } %>
+    <% end %>
+  </ul>
+  <%#  render 'shared/paginator', collection: @friends %>
+</div>

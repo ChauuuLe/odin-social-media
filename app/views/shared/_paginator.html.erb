@@ -1,0 +1,13 @@
+<%= paginator collection do %>
+  <nav role="navigation" aria-label="<%= t('views.pagination.label') %>" class="flex items-center justify-between space-x-1">
+    <%= link_to_if collection.prev_page, t('views.pagination.previous'), url_for(page: collection.prev_page), class: "px-3 py-2 rounded-md text-sm font-medium #{collection.prev_page ? 'text-blue-600' : 'text-gray-400'}" %>
+    <% collection.each_page do |page| %>
+      <% if page.left_outer? || page.right_outer? || page.inside_window? %>
+        <%= link_to page, url_for(page: page), class: "px-3 py-2 rounded-md text-sm font-medium #{page == collection.current_page ? 'bg-blue-500 text-white' : 'text-blue-600'}" %>
+      <% elsif page.gap? %>
+        <span class="px-3 py-2 rounded-md text-sm font-medium text-gray-400">...</span>
+      <% end %>
+    <% end %>
+    <%= link_to_if collection.next_page, t('views.pagination.next'), url_for(page: collection.next_page), class: "px-3 py-2 rounded-md text-sm font-medium #{collection.next_page ? 'text-blue-600' : 'text-gray-400'}" %>
+  </nav>
+<% end %>

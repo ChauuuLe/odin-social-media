@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container {
+  @apply max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md;
+}
+
+.form-container {
+  @apply max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md;
+}
+
+.title, .header-title, .newsfeed-title {
+  @apply text-3xl font-bold mb-6;
+}
+
+.list, .post-list, .comment-list {
+  @apply space-y-4 mb-6;
+}
+
+.comment-list {
+  @apply mb-4;
+}
+
+.list-item, .comment-item, .request-item, .user-item, .post-container {
+  @apply p-4 bg-gray-50 rounded-lg shadow;
+}
+
+.content, .post-content, .post-content, .post-meta, .meta, .comment-meta, .request-username, .user-info {
+  @apply text-lg mb-4;
+}
+
+.meta, .post-meta, .comment-meta, .post-meta, .post-meta, .post-meta, .user-info {
+  @apply text-sm text-gray-500 mb-4;
+}
+
+.pagination {
+  @apply mb-4 mt-6;
+}
+
+.form-label {
+  @apply block text-gray-700 font-bold mb-2;
+}
+
+.form-input {
+  @apply w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500;
+}
+
+.form-textarea {
+  @apply w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 h-40;
+}
+
+.form-submit, .submit-button, .like-button, .unlike-button {
+  @apply mt-4 ml-2 px-4 py-2 text-white rounded-lg focus:outline-none;
+}
+
+.form-submit {
+  @apply bg-blue-500 hover:bg-blue-600 focus:bg-blue-700;
+}
+
+.submit-button, .like-button {
+  @apply bg-blue-500 hover:bg-blue-600 focus:bg-blue-700;
+}
+
+.unlike-button, .cancel-button {
+  @apply bg-red-500 hover:bg-red-600 focus:bg-red-700;
+}
+
+.accept-button {
+  @apply px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none focus:bg-green-700;
+}
+
+.input-container {
+  @apply flex;
+}
+
+.input-field {
+  @apply flex-grow p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500;
+}
+
+.user-link, .read-more-link {
+  @apply text-blue-500 hover:underline;
+}
+
+.links-group {
+  @apply space-y-2 mb-4;
+}
+
+.action-button {
+  @apply px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-700;
+}
+
+.danger-button {
+  @apply px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none focus:bg-red-700;
+}

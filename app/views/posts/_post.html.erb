@@ -1,0 +1,50 @@
+<div class="container">
+  <h3 class="post-title"> <%= post.title %></h3>
+  
+  <br>
+  <p class="post-content"><%= post.content %></p>
+  
+  <p class="post-meta">
+    By <%= post.author.username %>
+    Posted on <%= post.created_at.strftime("%B %d, %Y %H:%M") %>
+    <span class="ml-4">Likes: <%= post.likes.count %></span>
+  </p>
+
+  <ul class="comment-list">
+    <% post.comments.each do |comment| %>
+      <li class="comment-item">
+        <p class="comment-content"><%= comment.content %></p>
+        <p class="comment-meta">
+          By <%= comment.author.username %>
+          <span class="ml-4">Posted on <%= comment.created_at.strftime("%B %d, %Y %H:%M") %></span>
+        </p>
+        <% if current_user.id == comment.author_id %>
+          <%= button_to "Delete comment", post_comment_path(post, comment), method: :delete, class: "comment-delete" %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+  <%#render 'shared/paginator', collection: post.comments.page(params[:page]).per(10) %>
+  
+  <div class="comment-form">
+    <%= form_for([post, post.comments.build]) do |f| %>
+      <div class="flex">
+        <%= f.text_field :content, placeholder: "Your comment here", class: "input-field" %>
+        <%= f.submit "Post", class: "submit-button" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="flex space-x-2">
+    <% if post.likes.exists?(author: current_user) %>
+      <%= form_with url: unlike_post_path(post), method: :delete, local: true, class: "inline" do %>
+        <%= submit_tag "Unlike", class: "unlike-button" %>
+      <% end %>
+    <% else %>
+      <%= form_with url: like_post_path(post), method: :post, local: true, class: "inline" do %>
+        <%= submit_tag "Like", class: "like-button" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

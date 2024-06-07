@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="header-title"><%= @user.username %>'s Profile</div>
+  <div class="content">
+    <p class="meta"><%= @user.email %></p>
+  </div>
+
+  <% if @user.friends.include?(current_user) %>
+    <div class="list-item">
+      <span class="text-gray-700">You're already friends</span>
+      <%= form_with url: friend_path(@user), method: :delete, local: true, class: "inline" do %>
+        <%= submit_tag "Unfriend", class: "unlike-button", data: { confirm: "Are you sure?" } %>
+      <% end %>
+    </div>
+
+    <ul class="post-list">
+      <%= render @posts %>
+    </ul>
+    <%#render 'shared/paginator', collection: @posts %>
+
+  <% elsif FriendRequest.where(friend_id: current_user.id, user_id: @user.id).any? %>
+    <div class="list-item">
+      <span class="text-gray-700">Friend request pending</span>
+    </div>
+
+    <ul class="post-list">
+      <%= render @posts %>
+    </ul>
+    <%#render 'shared/paginator', collection: @posts %>
+
+  <% elsif current_user.email == @user.email %>
+    <div class="form-container">
+      <% @post = Post.new %>
+      <%= render "posts/form" %>
+    </div>
+
+    <ul class="post-list">
+      <%= render @posts %>
+    </ul>
+    <%#render 'shared/paginator', collection: @posts %>
+
+  <% else %>
+    <div class="list-item">
+      <%= form_with url: user_friend_requests_path(@user), method: :post, local: true, class: "inline" do %>
+        <%= submit_tag "Send Friend Request", class: "form-submit" %>
+      <% end %>
+    </div>
+
+    <ul class="post-list">
+      <%= render @posts %>
+    </ul>
+    
+  <% end %>
+</div>
